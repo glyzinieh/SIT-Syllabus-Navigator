@@ -7,12 +7,12 @@ import {
 } from "@/components/digital-go-jp";
 import Link from "next/link";
 import { useId, useRef } from "react";
+import { DrawerLink } from "./drawerLink";
+import { DrawerSection } from "./drawerSection";
 
 export default function Header() {
 	const drawerId = useId();
 	const drawerRef = useRef<HTMLDialogElement | null>(null);
-
-	const linkClasses = "p-2 hover:bg-solid-gray-50 hover:underline rounded-lg";
 
 	return (
 		<>
@@ -28,6 +28,7 @@ export default function Header() {
 					</HamburgerMenuButton>
 				</div>
 			</header>
+
 			<dialog
 				aria-labelledby={`${drawerId}-heading`}
 				className="m-[unset] max-w-full max-h-[unset] w-72 h-dvh start-auto bg-white shadow-2 border-l border-l-transparent [scrollbar-gutter:stable] backdrop:bg-opacity-gray-100 forced-colors:backdrop:bg-[#000b]"
@@ -42,47 +43,38 @@ export default function Header() {
 						閉じる
 					</HamburgerMenuButton>
 				</div>
+
 				<div className="mx-auto px-4">
-					<section className="my-4">
-						<div className={`text-xl ${linkClasses}`}>
-							<Link
-								href="/"
-								onClick={() => drawerRef.current?.close()}
-							>
-								ホーム
-							</Link>
-						</div>
-					</section>
-					<section className="my-4">
-						<h2 className="text-xl p-2">はじめる</h2>
-						<div className={`text-lg ml-4 ${linkClasses}`}>
-							<Link
-								href="/select"
-								onClick={() => drawerRef.current?.close()}
-							>
-								シラバスを選択する
-							</Link>
-						</div>
-						<div className={`text-lg ml-4 ${linkClasses}`}>
-							<Link
-								href="/import"
-								onClick={() => drawerRef.current?.close()}
-							>
-								ファイルから読み込む
-							</Link>
-						</div>
-					</section>
-					<section className="my-4">
-						<h2 className="text-xl p-2">科目を見つける</h2>
-						<div className={`text-lg ml-4 ${linkClasses}`}>
-							<Link
-								href="/subjects"
-								onClick={() => drawerRef.current?.close()}
-							>
-								科目配当表から探す
-							</Link>
-						</div>
-					</section>
+					<DrawerSection>
+						<DrawerLink href="/" level={1} drawerRef={drawerRef}>
+							ホーム
+						</DrawerLink>
+					</DrawerSection>
+					<DrawerSection title="はじめる">
+						<DrawerLink
+							href="/select"
+							level={2}
+							drawerRef={drawerRef}
+						>
+							シラバスを選択する
+						</DrawerLink>
+						<DrawerLink
+							href="/file"
+							level={2}
+							drawerRef={drawerRef}
+						>
+							ファイルを入出力する
+						</DrawerLink>
+					</DrawerSection>
+					<DrawerSection title="科目を見つける">
+						<DrawerLink
+							href="/subjects"
+							level={2}
+							drawerRef={drawerRef}
+						>
+							科目配当表から探す
+						</DrawerLink>
+					</DrawerSection>
 				</div>
 			</dialog>
 		</>
