@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 export default async function Page({
 	params,
 }: {
-	params: { courseCode: string };
+	params: Promise<{ courseCode: string }>;
 }) {
 	const { courseCode } = await params;
 
