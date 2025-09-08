@@ -18,7 +18,7 @@ export default function Header() {
 		<>
 			<header className="shadow">
 				<div className="container mx-auto px-10 py-4 flex justify-between text-xl">
-					<Link href="/">SIT Syllabus Navigator</Link>
+					<Link href="/">SIT Syllabus Navigator (β)</Link>
 					<HamburgerMenuButton
 						className="p-1"
 						onClick={() => drawerRef.current?.showModal()}
@@ -58,13 +58,13 @@ export default function Header() {
 						>
 							シラバスを選択する
 						</DrawerLink>
-						<DrawerLink
+						{/* <DrawerLink
 							href="/file"
 							level={2}
 							drawerRef={drawerRef}
 						>
 							ファイルを入出力する
-						</DrawerLink>
+						</DrawerLink> */}
 					</DrawerSection>
 					<DrawerSection title="科目を見つける">
 						<DrawerLink
