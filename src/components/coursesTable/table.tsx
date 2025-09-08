@@ -10,13 +10,12 @@ import {
 	getFacetedUniqueValues,
 	getFilteredRowModel,
 	getSortedRowModel,
-	Row,
 	SortingState,
 	useReactTable,
 } from "@tanstack/react-table";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { InputFilter, SelectFilter } from ".";
+import { Link } from "../digital-go-jp";
 import { SortIcon } from "../icons";
 
 interface CoursesTableProps {
@@ -27,12 +26,6 @@ export function CoursesTable({ courses }: CoursesTableProps) {
 	const [sorting, setSorting] = useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
-	const router = useRouter();
-
-	function handleRowClick(row: Row<CourseForTable>) {
-		router.push(`/subjects/${row.original.courseCode}`);
-	}
-
 	const columnHelper = createColumnHelper<CourseForTable>();
 
 	const columns = [
@@ -40,6 +33,11 @@ export function CoursesTable({ courses }: CoursesTableProps) {
 			header: "科目名",
 			meta: { className: "overflow-hidden truncate" },
 			filterFn: "includesString",
+			cell: (info) => (
+				<Link href={`/subjects/${info.row.original.courseCode}`}>
+					{info.getValue()}
+				</Link>
+			),
 		}),
 		columnHelper.accessor("series", {
 			header: "系列",
@@ -138,7 +136,6 @@ export function CoursesTable({ courses }: CoursesTableProps) {
 						<tr
 							key={row.id}
 							className="border-b border-solid-gray-500 even:bg-solid-gray-50 hover:bg-blue-50 cursor-pointer"
-							onClick={() => handleRowClick(row)}
 						>
 							{row.getVisibleCells().map((cell) => (
 								<td
