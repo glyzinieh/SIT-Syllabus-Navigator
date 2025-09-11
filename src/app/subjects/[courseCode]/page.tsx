@@ -184,10 +184,10 @@ export default async function Page({
 									{cls.year}
 								</td>
 								<td className="px-4 py-5 align-top">
-									{cls.campus}
+									{cls.semester}
 								</td>
 								<td className="px-4 py-5 align-top">
-									{cls.semester}
+									{cls.campus}
 								</td>
 								<td className="px-4 py-5 align-top">
 									{cls.instructor}
