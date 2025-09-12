@@ -2,6 +2,15 @@ import { CoursesTable } from "@/components/coursesTable";
 import { getSyllabus } from "../../lib/syllabus";
 import { CourseForTable } from "@/types/syllabus";
 
+export async function generateMetadata() {
+	const syllabus = await getSyllabus();
+
+	return {
+		title: "科目配当表から探す",
+		description: `${syllabus.department}の科目配当表`,
+	};
+}
+
 export default async function Page() {
 	const syllabus = await getSyllabus();
 	const courses: CourseForTable[] = syllabus.courses.map((course) => ({

@@ -1,5 +1,10 @@
 import { MenuButton, MenuSection } from "./_components";
 
+export const metadata = {
+	title: "ホーム",
+	description: "芝浦工業大学の履修登録をサポートするツール",
+};
+
 export default function Page() {
 	return (
 		<>
