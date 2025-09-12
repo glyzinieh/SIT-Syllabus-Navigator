@@ -14,12 +14,15 @@ export async function generateMetadata({
 		(course) => course.courseCode === courseCode
 	);
 	if (!course) {
-		notFound();
+		return {
+			title: "科目が見つかりません",
+			description: "指定された科目は存在しません。",
+		};
 	}
 
 	return {
 		title: course.courseName,
-		description: `${course.courseName}の詳細情報`,
+		description: `${course.courseName} の詳細情報`,
 	};
 }
 
