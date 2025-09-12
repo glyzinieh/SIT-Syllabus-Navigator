@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 export async function generateMetadata({
 	params,
 }: {
-	params: { courseCode: string };
+	params: Promise<{ courseCode: string }>;
 }) {
 	const { courseCode } = await params;
 
