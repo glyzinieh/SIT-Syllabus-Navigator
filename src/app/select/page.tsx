@@ -2,6 +2,11 @@ import { cookies } from "next/headers";
 import { SelectForm } from "./_components/select";
 import { Link } from "@/components/digital-go-jp";
 
+export const metadata = {
+	title: "シラバスを選択する",
+	description: "芝浦工業大学の履修登録をサポートするツール",
+};
+
 export default async function Page() {
 	const response = await fetch(
 		"https://glyzinieh.github.io/SIT-Syllabus-Data/index.json"

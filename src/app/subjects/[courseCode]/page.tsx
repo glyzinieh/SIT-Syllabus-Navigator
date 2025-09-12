@@ -2,6 +2,27 @@ import { Link } from "@/components/digital-go-jp";
 import { getSyllabus } from "@/lib/syllabus";
 import { notFound } from "next/navigation";
 
+export async function generateMetadata({
+	params,
+}: {
+	params: { courseCode: string };
+}) {
+	const { courseCode } = await params;
+
+	const syllabus = await getSyllabus();
+	const course = syllabus.courses.find(
+		(course) => course.courseCode === courseCode
+	);
+	if (!course) {
+		notFound();
+	}
+
+	return {
+		title: course.courseName,
+		description: `${course.courseName}の詳細情報`,
+	};
+}
+
 export default async function Page({
 	params,
 }: {
