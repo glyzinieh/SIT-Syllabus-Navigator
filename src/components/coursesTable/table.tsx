@@ -135,7 +135,7 @@ export function CoursesTable({ courses }: CoursesTableProps) {
 					{table.getRowModel().rows.map((row) => (
 						<tr
 							key={row.id}
-							className="border-b border-solid-gray-500 even:bg-solid-gray-50 hover:bg-blue-50 cursor-pointer"
+							className="border-b border-solid-gray-500 even:bg-solid-gray-50 hover:bg-blue-50"
 						>
 							{row.getVisibleCells().map((cell) => (
 								<td
